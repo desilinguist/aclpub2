@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 import argparse
+import sys
+from pathlib import Path
+
+# The aclpub2 package lives next to this script's directory, not inside it;
+# Python only puts the script's own directory on sys.path.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from aclpub2.generate import generate_proceedings, generate_handbook
 
 if __name__ == "__main__":
