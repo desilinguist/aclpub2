@@ -96,6 +96,7 @@ proceedings_address: [optional] LaTeX table rows that replace the default addres
     & USA\\
     & Tel: +1-855-225-1962\\
     &{\tt acl@aclweb.org}\\
+sponsor_ads: [optional] Path to a PDF of sponsor advertisements, relative to the input directory, e.g. sponsor_ads.pdf. If set and a sponsors.yml file is present, all pages of the PDF are inserted after the sponsor logos page.
 ```
 
 **Notice**: avoid using LaTeX escape codes but simply use the characters in UTF8, e.g., Rilić instead of Rili'\\{c})).

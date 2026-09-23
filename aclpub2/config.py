@@ -18,7 +18,7 @@ def load_configs(root: Path):
     """
     conference = load_config("conference_details", root, required=True)
     # Fields that contain raw LaTeX code and should not be escaped
-    raw_latex_fields = {'proceedings_address'}
+    raw_latex_fields = {'proceedings_address', 'sponsor_ads'}
     for item in conference:
         if isinstance(conference[item], str) and item not in raw_latex_fields:
             conference[item] = normalize_latex_string(conference[item])

@@ -115,6 +115,15 @@
   \bigskip
   \bigskip
 \BLOCK{endfor}
+
+% Include sponsor ads if specified in conference_details.yml
+\BLOCK{if conference.sponsor_ads is defined}
+  \newpage
+  \phantomsection
+  \addcontentsline{toc}{section}{Sponsor Advertisements}
+  \includepdf[pages=-]{\VAR{root}/\VAR{conference.sponsor_ads}}
+\BLOCK{endif}
+
 \newpage
 \BLOCK{endif}
 
