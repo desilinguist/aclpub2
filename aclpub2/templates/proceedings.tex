@@ -480,7 +480,14 @@ ISBN \VAR{conference.isbn}
   	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
                             \VAR{conference.start_date.year} \VAR{conference.publisher}}}
   }
+  % Papers that kept their own bottom-center page numbers need them covered,
+  % otherwise they collide with the proceedings folio. Paint a white box over
+  % the original folio and print the proceedings page number on top.
+  \BLOCK{if paper.has_page_numbers}
+  \includepdf[pagecommand={\thispagestyle{empty}\AddToShipoutPictureFG*{\setlength{\unitlength}{1mm}\put(75,15){\color{white}\rule{60mm}{10mm}}\put(105,18.5){\makebox(0,0)[b]{\thepage}}}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
+  \BLOCK{else}
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
+  \BLOCK{endif}
 \BLOCK{endfor}
 
 %%%%%%%%%%%%%%%%
