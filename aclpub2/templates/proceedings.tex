@@ -484,7 +484,10 @@ ISBN \VAR{conference.isbn}
   % otherwise they collide with the proceedings folio. Paint a white box over
   % the original folio and print the proceedings page number on top.
   \BLOCK{if paper.has_page_numbers}
-  \includepdf[pagecommand={\thispagestyle{empty}\AddToShipoutPictureFG*{\setlength{\unitlength}{1mm}\put(75,15){\color{white}\rule{60mm}{10mm}}\put(105,18.5){\makebox(0,0)[b]{\thepage}}}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
+  % Cover the original folio without touching the watermark (first page,
+  % glyphs up to ~15.2mm) or body text (from ~23.4mm). Later pages have no
+  % watermark, so the box can reach lower folios there.
+  \includepdf[pagecommand={\thispagestyle{empty}\AddToShipoutPictureFG*{\setlength{\unitlength}{1mm}\ifnum\thepage=\VAR{paper.start_page}\put(75,15.7){\color{white}\rule{60mm}{4.8mm}}\else\put(75,12.5){\color{white}\rule{60mm}{8mm}}\fi\put(105,20.8){\makebox(0,0)[b]{\thepage}}}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
   \BLOCK{else}
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
   \BLOCK{endif}
