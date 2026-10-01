@@ -465,7 +465,10 @@ ISBN \VAR{conference.isbn}
 \setcounter{page}{1}
  \renewcommand{\headrulewidth}{0pt}
 \BLOCK{for paper in archival_papers}
-  \AddToShipoutPicture*{
+  % Watermark must be foreground: some camera-ready PDFs paint an opaque
+  % white background rectangle that hides a background watermark (it stays
+  % in the text layer but is invisible).
+  \AddToShipoutPictureFG*{
     \setlength{\unitlength}{1mm}
     \footnotesize
 
